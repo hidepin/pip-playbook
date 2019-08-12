@@ -1,0 +1,17 @@
+---
+# file: roles/pip/tasks/main.yml
+- name: python library module
+  command: ls -1 /root/src
+  register: python_library_list
+
+- debug:
+    var: python_library_list
+
+- name: python library install
+  pip:
+    executable: pip3
+    name: "/root/src/{{ item }}"
+  with_items:
+    - "{{ python_library_list.stdout_lines }}"
+
+

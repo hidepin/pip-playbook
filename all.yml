@@ -1,0 +1,8 @@
+---
+# file: all.yml
+- hosts: all
+  roles:
+    - { role: pip, when: "ansible_os_family == 'RedHat'" }
+
+  environment:
+    "{{ proxy_env }}"
